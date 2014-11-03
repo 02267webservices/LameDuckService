@@ -4,22 +4,18 @@
  */
 package dtu.ws;
 
+import javax.jws.WebService;
 
 /**
  *
  * @author rasmus
  */
-@javax.jws.WebService
+@WebService(serviceName = "LameDuckServiceGetFlightsService", portName = "LameDuckServiceGetFlightsPortTypeBindingPort", endpointInterface = "lameduckservice.ws.LameDuckServiceGetFlightsPortType", targetNamespace = "ws.LameDuckService", wsdlLocation = "WEB-INF/wsdl/LameDuckService/LameDuckService.wsdl")
 public class LameDuckService {
-    public String getFlights(String departureAirport, String destinationAirport, String departureDate){
-        return "Hello ";
+
+    public void lameDuckServiceGetFlightsOperation() {
+        //TODO implement this method
+        throw new UnsupportedOperationException("Not implemented yet.");
     }
     
-    public void bookFlight(){
-        
-    }
-    
-    public void cancelFlight(){
-        
-    }
 }
