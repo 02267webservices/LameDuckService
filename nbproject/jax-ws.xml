@@ -3,6 +3,31 @@
   <services>
     <service name="LameDuckService">
       <implementation-class>dtu.ws.LameDuckService</implementation-class>
+      <wsdl-url>file:/C:/Users/rasmus/Documents/NetBeansProjects/Project/LameDuckService/src/java/LameDuckService.wsdl</wsdl-url>
+      <local-wsdl-file>LameDuckService.wsdl</local-wsdl-file>
+      <service-name>LameDuckServiceGetFlightsService</service-name>
+      <port-name>LameDuckServiceGetFlightsPortTypeBindingPort</port-name>
+      <package-name>lameduckservice.ws</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <use-provider>false</use-provider>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>target</wsimport-option-name>
+          <wsimport-option-value>2.1</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
     </service>
   </services>
   <clients/>

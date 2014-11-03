@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="LameDuckService" targetNamespace="ws.LameDuckService"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="ws.LameDuckService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
+    <types/>
+    <message name="LameDuckServiceGetFlightsOperationRequest">
+        <element name="departureAirport" type="xsd:string"/>
+        <element name="destinationAirport" type="xsd:string"/>
+        <element name="departureDate" type="xsd:date"/>
+    </message>
+    <message name="LameDuckServiceGetFlightsOperationResponse"/>
+    <portType name="LameDuckServiceGetFlightsPortType">
+        <operation name="LameDuckServiceGetFlightsOperation">
+            <input name="input1" message="tns:LameDuckServiceGetFlightsOperationRequest"/>
+            <output name="output1" message="tns:LameDuckServiceGetFlightsOperationResponse"/>
+        </operation>
+    </portType>
+    <binding name="LameDuckServiceGetFlightsPortTypeBinding" type="tns:LameDuckServiceGetFlightsPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="LameDuckServiceGetFlightsOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="LameDuckServiceGetFlightsService">
+        <port name="LameDuckServiceGetFlightsPortTypeBindingPort" binding="tns:LameDuckServiceGetFlightsPortTypeBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/service"/>
+        </port>
+    </service>
+    <plnk:partnerLinkType name="LameDuckService">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="LameDuckServiceGetFlightsPortTypeRole" portType="tns:LameDuckServiceGetFlightsPortType"/>
+    </plnk:partnerLinkType>
+</definitions>
