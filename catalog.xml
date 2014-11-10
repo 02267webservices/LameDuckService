@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="file:/C:/Users/rasmus/Documents/NetBeansProjects/Project/LameDuckService/src/java/LameDuckService.wsdl" uri="src/conf/xml-resources/web-services/LameDuckService/wsdl/LameDuckService.wsdl"/>
-</catalog>
