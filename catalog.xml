@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/Users/gravr/NetBeansProjects/LameDuckService/src/java/dtu/ws/group8/lameduck/LameDuckWSDL.wsdl" uri="src/conf/xml-resources/web-services/LameDuckServiceFromWSDL/wsdl/LameDuckWSDL.wsdl"/>
+    <system systemId="file:/Users/gravr/NetBeansProjects/LameDuckService/src/java/dtu/ws/group8/lameduck/types/LameDuckSchema.xsd" uri="src/conf/xml-resources/jaxb/FlightBinding/LameDuckSchema.xsd"/>
+    <system systemId="file:/Users/gravr/NetBeansProjects/LameDuckService/src/java/dtu/ws/group8/lameduck/LameDuck.wsdl" uri="src/conf/xml-resources/web-services/LameDuckWebServiceFromWSDL/wsdl/LameDuck.wsdl"/>
+    <system systemId="file:/Users/gravr/NetBeansProjects/LameDuckService/src/java/dtu/ws/group8/lameduck/LameDuckSchema.xsd" uri="src/conf/xml-resources/web-services/LameDuckWebServiceFromWSDL/wsdl/LameDuckSchema.xsd"/>
+</catalog>
