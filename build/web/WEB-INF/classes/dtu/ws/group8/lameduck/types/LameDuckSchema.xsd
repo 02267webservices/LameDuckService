@@ -32,4 +32,40 @@
             <xsd:element name="flightInformation" type="tns:flightInfoType" minOccurs="0" maxOccurs="unbounded"></xsd:element>
         </xsd:sequence>
     </xsd:complexType>
+    <xsd:complexType name="cancelFlightRequestType">
+        <xsd:sequence>
+            <xsd:element name="flightBookingNumber" type="xsd:string"></xsd:element>
+            <xsd:element name="flightPrice" type="xsd:double"></xsd:element>
+            <xsd:element name="creditCardInfo" type="tns:creditCardInfoType"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="bookFlightRequestType">
+        <xsd:sequence>
+            <xsd:element name="flightBookingNumber" type="xsd:string"></xsd:element>
+            <xsd:element name="creditCardInfo" type="tns:creditCardInfoType"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="creditCardInfoType">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"></xsd:element>
+            <xsd:element name="cardNumber" type="xsd:string"></xsd:element>
+            <xsd:element name="expiryDate" type="xsd:date"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="defaultFaultType">
+        <xsd:sequence></xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="bookFlightFaultType">
+        <xsd:sequence>
+            <xsd:element name="bookFlightFaultMessage" type="xsd:string"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="cancelFlightFaultType">
+        <xsd:sequence>
+            <xsd:element name="cancelFlightFaultMassage" type="xsd:string"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="cancelFlightFaultElement" type="tns:cancelFlightFaultType"></xsd:element>
+    <xsd:element name="bookFlightFaultElement" type="tns:bookFlightFaultType"></xsd:element>
 </xsd:schema>

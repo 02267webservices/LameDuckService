@@ -13,20 +13,21 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import dtu.ws.group8.lameduck.types.FlightDetails;
 import dtu.ws.group8.lameduck.types.FlightInfoListType;
 import dtu.ws.group8.lameduck.types.FlightInfoType;
-//import dtu.ws.group8.lameduck.types.GetFlightRequestType;
 
 /**
  *
  * @author gravr
  */
-@WebService(serviceName = "LameDuckService", portName = "LameDuckPort", endpointInterface = "dtu.ws.group8.lameduck.LameDuckPortType", targetNamespace = "http://lameduck.group8.ws.dtu", wsdlLocation = "WEB-INF/wsdl/LameDuckWebServiceFromWSDL/LameDuckWrapper.wsdl")
-public class LameDuckWebServiceFromWSDL {
-
-    static private Vector<FlightInfoType> flightsFromDB = new  Vector<FlightInfoType>();
-    static boolean gotFlightsFromDB = false;
+@WebService(serviceName = "LameDuckService", portName = "LameDuckPort", endpointInterface = "dtu.ws.group8.lameduck.LameDuckWSDLPortType", targetNamespace = "http://lameduck.group8.ws.dtu", wsdlLocation = "WEB-INF/wsdl/LameDuckWebService/LameDuckWSDL.wsdl")
+public class LameDuckWebService {
     
-    public dtu.ws.group8.lameduck.types.FlightInfoListType lameDuck(dtu.ws.group8.lameduck.types.GetFlightRequestType input) {
-       
+    static private Vector<FlightInfoType> flightsFromDB = new  Vector<FlightInfoType>();
+    static private Vector<FlightInfoType> bookedFlights = new  Vector<FlightInfoType>();
+    static boolean gotFlightsFromDB = false;
+
+
+    public dtu.ws.group8.lameduck.types.FlightInfoListType getFlights(dtu.ws.group8.lameduck.types.GetFlightRequestType input) {
+        
         if(!gotFlightsFromDB){
             getFlightsFromDB();
         }
@@ -39,19 +40,49 @@ public class LameDuckWebServiceFromWSDL {
 
         //search through the list of flights and build
         // the list of matching flights, and return it
-        for(FlightInfoType fits:flightsFromDB){
+        for(FlightInfoType flight:flightsFromDB){
 
-            if(start.equals(fits.getFlightInfo().getStartAirport()) &&
-               destination.equals(fits.getFlightInfo().getDestinationAirport()) &&
-               dateFlight.equals(fits.getFlightInfo().getLiftOffDate())
+            if(start.equals(flight.getFlightInfo().getStartAirport()) &&
+               destination.equals(flight.getFlightInfo().getDestinationAirport()) &&
+               dateFlight.equals(flight.getFlightInfo().getLiftOffDate())
                     ){
-                returnListOfFlights.getFlightInformation().add(fits);
+                returnListOfFlights.getFlightInformation().add(flight);
             }
 
         }
 
         return returnListOfFlights;
     }
+
+    public boolean bookFlight(dtu.ws.group8.lameduck.types.BookFlightRequestType input) throws BookFlightFault {
+        double flightPrice = -1;
+        //get price of flight
+        for(FlightInfoType flight : flightsFromDB)
+            if(flight.getFlightBookingNumber().equals(input.getFlightBookingNumber())){
+                bookedFlights.add(flight);
+                flightPrice = (double) flight.getFlightPrice();
+                break;
+            }
+        if (flightPrice==-1){
+            throw new BookFlightFault("Booking number not found", null);
+        }
+        return true;
+    }
+
+    public boolean cancelFlight(dtu.ws.group8.lameduck.types.CancelFlightRequestType input) throws CancelFlightFault {
+        boolean foundFlight = false;
+        for(FlightInfoType flight : bookedFlights)
+            if(flight.getFlightBookingNumber().equals(input.getFlightBookingNumber())){
+                bookedFlights.remove(flight);
+                foundFlight = true;
+                break;
+            }
+        if (!foundFlight){
+            throw new CancelFlightFault("Booking number not found", null);
+        }
+        return true;
+    }
+    
     
     private void getFlightsFromDB() {
 
@@ -81,5 +112,6 @@ public class LameDuckWebServiceFromWSDL {
         
         gotFlightsFromDB = true;
     }
+
     
 }

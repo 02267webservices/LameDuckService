@@ -4,4 +4,6 @@
     <system systemId="file:/Users/gravr/NetBeansProjects/LameDuckService/src/java/dtu/ws/group8/lameduck/types/LameDuckSchema.xsd" uri="src/conf/xml-resources/jaxb/FlightBinding/LameDuckSchema.xsd"/>
     <system systemId="file:/Users/gravr/NetBeansProjects/LameDuckService/src/java/dtu/ws/group8/lameduck/LameDuck.wsdl" uri="src/conf/xml-resources/web-services/LameDuckWebServiceFromWSDL/wsdl/LameDuck.wsdl"/>
     <system systemId="file:/Users/gravr/NetBeansProjects/LameDuckService/src/java/dtu/ws/group8/lameduck/LameDuckSchema.xsd" uri="src/conf/xml-resources/web-services/LameDuckWebServiceFromWSDL/wsdl/LameDuckSchema.xsd"/>
+    <system systemId="file:/Users/gravr/NetBeansProjects/LameDuckGitHub/LameDuckService/src/java/dtu/ws/group8/lameduck/LameDuckWSDL.wsdl" uri="src/conf/xml-resources/web-services/LameDuckWebService/wsdl/LameDuckWSDL.wsdl"/>
+    <system systemId="file:/Users/gravr/NetBeansProjects/LameDuckGitHub/LameDuckService/src/java/dtu/ws/group8/lameduck/types/LameDuckSchema.xsd" uri="src/conf/xml-resources/web-services/LameDuckWebService/wsdl/types/LameDuckSchema.xsd"/>
 </catalog>

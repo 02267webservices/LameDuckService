@@ -28,24 +28,24 @@
             <isset property="conf.dir"/>
         </condition>
     </target>
-    <target name="wsimport-service-LameDuckWebServiceFromWSDL" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/service/LameDuckWebServiceFromWSDL"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/service/LameDuckWebServiceFromWSDL" destdir="${build.generated.dir}/jax-wsCache/service/LameDuckWebServiceFromWSDL" wsdl="${basedir}/${conf-dir}xml-resources/web-services/LameDuckWebServiceFromWSDL/wsdl/LameDuckWrapper.wsdl" catalog="catalog.xml" extension="true" verbose="true" xnocompile="true" target="2.1">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-services/LameDuckWebServiceFromWSDL/wsdl/LameDuckWrapper.wsdl"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/service/LameDuckWebServiceFromWSDL"/>
+    <target name="wsimport-service-LameDuckWebService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/service/LameDuckWebService"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/service/LameDuckWebService" destdir="${build.generated.dir}/jax-wsCache/service/LameDuckWebService" wsdl="${basedir}/${conf-dir}xml-resources/web-services/LameDuckWebService/wsdl/LameDuckWSDL.wsdl" catalog="catalog.xml" extension="true" verbose="true" xnocompile="true" target="2.1">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-services/LameDuckWebService/wsdl/LameDuckWSDL.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/service/LameDuckWebService"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/service/LameDuckWebServiceFromWSDL">
+            <fileset dir="${build.generated.dir}/jax-wsCache/service/LameDuckWebService">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
-        <copy todir="${build.web.dir}/WEB-INF/wsdl/LameDuckWebServiceFromWSDL">
-            <fileset dir="${basedir}/${conf-dir}xml-resources/web-services/LameDuckWebServiceFromWSDL/wsdl/"/>
+        <copy todir="${build.web.dir}/WEB-INF/wsdl/LameDuckWebService">
+            <fileset dir="${basedir}/${conf-dir}xml-resources/web-services/LameDuckWebService/wsdl/"/>
         </copy>
     </target>
-    <target name="wsimport-service-clean-LameDuckWebServiceFromWSDL" depends="-init-project">
+    <target name="wsimport-service-clean-LameDuckWebService" depends="-init-project">
         <delete dir="${build.generated.sources.dir}/jax-ws/dtu/ws/group8/lameduck"/>
-        <delete dir="${build.generated.dir}/jax-wsCache/service/LameDuckWebServiceFromWSDL"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/service/LameDuckWebService"/>
     </target>
-    <target name="wsimport-service-generate" depends="wsimport-service-LameDuckWebServiceFromWSDL"/>
+    <target name="wsimport-service-generate" depends="wsimport-service-LameDuckWebService"/>
 </project>

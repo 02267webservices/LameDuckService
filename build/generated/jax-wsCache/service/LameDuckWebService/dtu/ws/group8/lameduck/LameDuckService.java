@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.1
  * 
  */
-@WebServiceClient(name = "LameDuckService", targetNamespace = "http://lameduck.group8.ws.dtu", wsdlLocation = "file:/Users/gravr/NetBeansProjects/LameDuckService/src/conf/xml-resources/web-services/LameDuckWebServiceFromWSDL/wsdl/LameDuckWrapper.wsdl")
+@WebServiceClient(name = "LameDuckService", targetNamespace = "http://lameduck.group8.ws.dtu", wsdlLocation = "file:/Users/gravr/NetBeansProjects/LameDuckGitHub/LameDuckService/src/conf/xml-resources/web-services/LameDuckWebService/wsdl/LameDuckWSDL.wsdl")
 public class LameDuckService
     extends Service
 {
@@ -30,7 +30,7 @@ public class LameDuckService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/Users/gravr/NetBeansProjects/LameDuckService/src/conf/xml-resources/web-services/LameDuckWebServiceFromWSDL/wsdl/LameDuckWrapper.wsdl");
+            url = new URL("file:/Users/gravr/NetBeansProjects/LameDuckGitHub/LameDuckService/src/conf/xml-resources/web-services/LameDuckWebService/wsdl/LameDuckWSDL.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -49,11 +49,11 @@ public class LameDuckService
     /**
      * 
      * @return
-     *     returns LameDuckPortType
+     *     returns LameDuckWSDLPortType
      */
     @WebEndpoint(name = "LameDuckPort")
-    public LameDuckPortType getLameDuckPort() {
-        return super.getPort(new QName("http://lameduck.group8.ws.dtu", "LameDuckPort"), LameDuckPortType.class);
+    public LameDuckWSDLPortType getLameDuckPort() {
+        return super.getPort(new QName("http://lameduck.group8.ws.dtu", "LameDuckPort"), LameDuckWSDLPortType.class);
     }
 
     /**
@@ -61,11 +61,11 @@ public class LameDuckService
      * @param features
      *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
      * @return
-     *     returns LameDuckPortType
+     *     returns LameDuckWSDLPortType
      */
     @WebEndpoint(name = "LameDuckPort")
-    public LameDuckPortType getLameDuckPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://lameduck.group8.ws.dtu", "LameDuckPort"), LameDuckPortType.class, features);
+    public LameDuckWSDLPortType getLameDuckPort(WebServiceFeature... features) {
+        return super.getPort(new QName("http://lameduck.group8.ws.dtu", "LameDuckPort"), LameDuckWSDLPortType.class, features);
     }
 
     private static URL __getWsdlLocation() {
