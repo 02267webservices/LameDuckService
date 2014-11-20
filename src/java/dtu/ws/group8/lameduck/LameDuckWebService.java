@@ -163,21 +163,74 @@ public class LameDuckWebService {
         }
         XMLGregorianCalendar date = df.newXMLGregorianCalendar("2015-01-01");
 
-        FlightInfoType flightInfo1 = new FlightInfoType();
+        FlightInfoType flightInfo1a = new FlightInfoType();
+        flightInfo1a.setFlightBookingNumber("ABC1234");
+        flightInfo1a.setFlightPrice(4995.95);
+        flightInfo1a.setFlightReservationService("Flight Reservation Service INC");
+        FlightDetails flight1a = new FlightDetails();
+        flight1a.setStartAirport("Copenhagen");
+        flight1a.setDestinationAirport("Berlin");
+        flight1a.setCarrierName("SAS");
+        flight1a.setLiftOffDate(date);
+        flight1a.setLandingDate(date);
+        flightInfo1a.setFlightInfo(flight1a);
         
-        flightInfo1.setFlightBookingNumber("ABC1234");
-        flightInfo1.setFlightPrice(4995.95);
-        flightInfo1.setFlightReservationService("Flight Reservation Service INC");
+        FlightInfoType flightInfo1b = new FlightInfoType();
+        flightInfo1b.setFlightBookingNumber("ABC4321");
+        flightInfo1b.setFlightPrice(460.00);
+        flightInfo1b.setFlightReservationService("Flight Reservation Service INC");
+        FlightDetails flight1b = new FlightDetails();
+        flight1b.setStartAirport("Copenhagen");
+        flight1b.setDestinationAirport("Berlin");
+        flight1b.setCarrierName("Norwegian");
+        flight1b.setLiftOffDate(date);
+        flight1b.setLandingDate(date);
+        flightInfo1b.setFlightInfo(flight1b);
         
-        FlightDetails flight1 = new FlightDetails();
-        flight1.setStartAirport("Copenhagen");
-        flight1.setDestinationAirport("Berlin");
-        flight1.setCarrierName("SAS");
-        flight1.setLiftOffDate(date);
-        flight1.setLandingDate(date);
-        flightInfo1.setFlightInfo(flight1);
+        XMLGregorianCalendar date2 = df.newXMLGregorianCalendar("2015-01-05");
+        FlightInfoType flightInfo2 = new FlightInfoType();
+        flightInfo2.setFlightBookingNumber("DEF5678");
+        flightInfo2.setFlightPrice(950.00);
+        flightInfo2.setFlightReservationService("Flight Reservation Service INC");
+        FlightDetails flight2 = new FlightDetails();
+        flight2.setStartAirport("Berlin");
+        flight2.setDestinationAirport("Krakow");
+        flight2.setCarrierName("Air Berlin");
+        flight2.setLiftOffDate(date2);
+        flight2.setLandingDate(date2);
+        flightInfo2.setFlightInfo(flight2);
+        
+        XMLGregorianCalendar date3 = df.newXMLGregorianCalendar("2015-01-05");
+        FlightInfoType flightInfo3 = new FlightInfoType();
+        flightInfo3.setFlightBookingNumber("GHI912");
+        flightInfo3.setFlightPrice(3000.00);
+        flightInfo3.setFlightReservationService("Flight Reservation Service INC");
+        FlightDetails flight3 = new FlightDetails();
+        flight3.setStartAirport("Krakow");
+        flight3.setDestinationAirport("Moscow");
+        flight3.setCarrierName("Areoflot");
+        flight3.setLiftOffDate(date3);
+        flight3.setLandingDate(date3);
+        flightInfo3.setFlightInfo(flight3);
+        
+        XMLGregorianCalendar date4 = df.newXMLGregorianCalendar("2015-01-10");
+        FlightInfoType flightInfo4 = new FlightInfoType();
+        flightInfo4.setFlightBookingNumber("JKL345");
+        flightInfo4.setFlightPrice(3500.00);
+        flightInfo4.setFlightReservationService("Flight Reservation Service INC");
+        FlightDetails flight4 = new FlightDetails();
+        flight4.setStartAirport("Moscow");
+        flight4.setDestinationAirport("Denmark");
+        flight4.setCarrierName("Areoflot");
+        flight4.setLiftOffDate(date4);
+        flight4.setLandingDate(date4);
+        flightInfo4.setFlightInfo(flight4);
 
-        flightsFromDB.add(flightInfo1);
+        flightsFromDB.add(flightInfo1a);
+        flightsFromDB.add(flightInfo1b);
+        flightsFromDB.add(flightInfo2);
+        flightsFromDB.add(flightInfo3);
+        flightsFromDB.add(flightInfo4);
         
         gotFlightsFromDB = true;
     }
