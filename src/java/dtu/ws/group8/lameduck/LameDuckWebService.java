@@ -19,7 +19,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import dtu.ws.group8.lameduck.types.FlightDetails;
 import dtu.ws.group8.lameduck.types.FlightInfoListType;
 import dtu.ws.group8.lameduck.types.FlightInfoType;
-import javax.xml.ws.WebServiceRef;
 
 /**
  *
@@ -62,6 +61,7 @@ public class LameDuckWebService {
 
     public boolean bookFlight(dtu.ws.group8.lameduck.types.BookFlightRequestType input) throws BookFlightFault {
         double flightPrice = -1;
+        boolean alreadyBooked = false;
         //get price of flight
         for(FlightInfoType flight : flightsFromDB)
             if(flight.getFlightBookingNumber().equals(input.getFlightBookingNumber())){
@@ -72,8 +72,20 @@ public class LameDuckWebService {
         if (flightPrice==-1){
             throw new BookFlightFault("Booking number not found", null);
         }
-        
-        
+        /*
+        //Check if already booked
+        for(FlightInfoType flight : bookedFlights){
+         
+            if(flight.getFlightBookingNumber().equals(input.getFlightBookingNumber())){
+                alreadyBooked = true;
+                break;
+            }
+        }
+        if (alreadyBooked) {
+            throw new BookFlightFault("Flight is already booked", null);
+        }
+        */ 
+
         dtu.ws.group8.lameduck.types.CreditCardInfoType cardInfo = input.getCreditCardInfo();
         CreditCardInfoType cardInfoImmFormat = new CreditCardInfoType();
         cardInfoImmFormat.setName(cardInfo.getName());
@@ -82,26 +94,18 @@ public class LameDuckWebService {
         ExpirationDateType expDate = new ExpirationDateType();
         expDate.setMonth(cardInfo.getExpiryDate().getMonth());
         expDate.setYear(cardInfo.getExpiryDate().getYear()% 10);
-        
-        System.out.println("card month: " +cardInfo.getExpiryDate().getMonth() + "card year: " +cardInfo.getExpiryDate().getYear());    
         cardInfoImmFormat.setExpirationDate(expDate);
         
         AccountType accType = new AccountType();
         accType.setName("LameDuck");
         accType.setNumber("50208812");
         
-        
         try {
+            return chargeCreditCard(8,cardInfoImmFormat,(int)flightPrice,accType);
             
-            boolean validate = chargeCreditCard(8,cardInfoImmFormat,(int)flightPrice,accType);
-            System.out.println("chargeCreditCard: " +validate);
-            if(validate == false)
-                throw new CancelFlightFault("FastMoney Failed", null);
         }catch (Exception ex) {
-             System.out.println("chargeCreditCard: " +ex.getMessage().toString());
-             return false;
+              throw new BookFlightFault("FastMoney Failed",null,ex);
         }
-        return true;
     }
 
     public boolean cancelFlight(dtu.ws.group8.lameduck.types.CancelFlightRequestType input) throws CancelFlightFault {
@@ -140,16 +144,12 @@ public class LameDuckWebService {
             accType.setName("LameDuck");
             accType.setNumber("50208812");
             
-            boolean refundSuccess = refundCreditCard(8,cardInfoImmFormat,(int)flightPrice/2,accType);
-            
-            if(refundSuccess == false)
-                throw new CancelFlightFault("FastMoney Failed", null);
-             
+            return refundCreditCard(8,cardInfoImmFormat,(int)flightPrice/2,accType);
             
         }catch (Exception ex) {
-            throw new CancelFlightFault("FastMoney Failed", null);
+            throw new CancelFlightFault("FastMoney Failed", null,ex);
         }
-        return true;
+ 
     }
     
     
